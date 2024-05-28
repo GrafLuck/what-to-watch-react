@@ -1,19 +1,54 @@
+import { Link } from 'react-router-dom';
 import { TSmallCardFilm } from '../types/small-card-film';
+import { useState } from 'react';
 
 type TSmallFilmCardProps = {
   film: TSmallCardFilm;
 };
 
 export default function SmallFilmCard({ film }: TSmallFilmCardProps) {
+  const [isVideo, setIsVideo] = useState<boolean>(false);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
+
+  const handleFilmCardMouseOver = () => {
+    const id = setTimeout(() => {
+      setIsVideo(true);
+    }, 1000);
+    setTimeoutId(id);
+  };
+
+  const handleFilmCardMouseLeave = () => {
+    setIsVideo(false);
+    clearTimeout(timeoutId);
+  };
+
   return (
-    <article className="small-film-card catalog__films-card">
+    <article
+      className="small-film-card catalog__films-card"
+      onMouseOver={handleFilmCardMouseOver}
+      onMouseLeave={handleFilmCardMouseLeave}
+    >
       <div className="small-film-card__image">
-        <img src={film.previewImage} alt={film.name} width={280} height={175} />
+        {!isVideo ? (
+          <img
+            src={film.previewImage}
+            alt={film.name}
+            width={280}
+            height={175}
+          />
+        ) : (
+          <video
+            src={film.previewVideoLink}
+            className="player__video"
+            autoPlay
+          />
+        )}
+        {/* <img src={film.previewImage} alt={film.name} width={280} height={175} /> */}
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">
+        <Link className="small-film-card__link" to={`/films/${film.id}`}>
           {film.name}
-        </a>
+        </Link>
       </h3>
     </article>
   );
