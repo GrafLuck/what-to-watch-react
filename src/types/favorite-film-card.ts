@@ -1,4 +1,4 @@
-export type FavoriteFilmCard = {
+export type TFavoriteFilmCard = {
     id: string;
     name: string;
     posterImage: string;

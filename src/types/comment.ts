@@ -1,4 +1,4 @@
-export type Comment = {
+export type TComment = {
     id: string;
     date: string;
     user: string;

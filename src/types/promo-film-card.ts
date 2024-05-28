@@ -1,4 +1,4 @@
-export type PromoFilmCard = {
+export type TPromoFilmCard = {
     id: string;
     name: string;
     posterImage: string;
