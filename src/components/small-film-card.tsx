@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { TSmallCardFilm } from '../types/small-card-film';
 import { useRef, useState } from 'react';
+import { WAIT_VIDEO_TIMER_IN_MS } from '../const';
 
 type TSmallFilmCardProps = {
   film: TSmallCardFilm;
@@ -13,7 +14,7 @@ export default function SmallFilmCard({ film }: TSmallFilmCardProps) {
   const handleFilmCardMouseOver = () => {
     const id = setTimeout(() => {
       setIsVideo(true);
-    }, 1000);
+    }, WAIT_VIDEO_TIMER_IN_MS);
     timeoutId.current = id;
   };
 
