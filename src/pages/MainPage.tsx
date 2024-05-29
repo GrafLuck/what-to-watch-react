@@ -1,11 +1,29 @@
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import FilmCard from '../components/film-card';
 import FilmCardList from '../components/film-card-list';
 import Footer from '../components/footer';
 import GenresList from '../components/genres-list';
 import Header from '../components/header';
 import ShowMoreButton from '../components/show-more-button';
+import { RootState } from '../store/store';
+import { makeFakeSmallCardFilms } from '../mocks/mocks';
+import { MAX_DISPLAYED_FILMS } from '../const';
 
 export default function MainPage() {
+  const [isShowMoreButton, setIsShowMoreButton] = useState(true);
+  const countFilms = makeFakeSmallCardFilms().length;
+
+  const countPage = useSelector(
+    (state: RootState) => state.interface.countPage
+  );
+
+  useEffect(() => {
+    if (countFilms <= countPage * MAX_DISPLAYED_FILMS) {
+      setIsShowMoreButton(false);
+    }
+  }, [countPage, countFilms]);
+
   return (
     <>
       <section className="film-card">
@@ -24,7 +42,7 @@ export default function MainPage() {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList />
           <FilmCardList />
-          <ShowMoreButton />
+          {isShowMoreButton ? <ShowMoreButton /> : ''}
         </section>
         <Footer />
       </div>
