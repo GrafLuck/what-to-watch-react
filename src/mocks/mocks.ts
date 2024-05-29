@@ -1,3 +1,4 @@
+import { TFilmCard } from '../types/film-card';
 import { TPromoFilmCard } from '../types/promo-film-card';
 import { TSmallCardFilm } from '../types/small-card-film';
 
@@ -192,5 +193,29 @@ export function makeFakeSmallCardFilms() : TSmallCardFilm[] {
       genre: 'Crime'
     }
   ];
+}
+
+export function makeFakeFilm() : TFilmCard {
+  return {
+    id: '40b69802-9fbf-4b55-ab98-aab138e77605',
+    name: 'What We Do in the Shadows',
+    posterImage: 'https://13.design.htmlacademy.pro/static/film/poster/What-We-Do-in-the-Shadows.jpg',
+    backgroundImage: 'https://13.design.htmlacademy.pro/static/film/background/What-We-Do-in-the-Shadows.jpg',
+    backgroundColor: '#A39E81',
+    videoLink: 'https://13.design.htmlacademy.pro/static/film/video/matrix.mp4',
+    description: 'A look into the daily (or rather, nightly) lives of three vampires who\'ve lived together for over 100 years, in Staten Island.',
+    rating: 7.2,
+    scoresCount: 6173,
+    director: 'Jemaine Clement',
+    starring: [
+      'Kayvan Novak',
+      'Matt Berry',
+      'Natasia Demetriou'
+    ],
+    runTime: 30,
+    genre: 'Comedy',
+    released: 2019,
+    isFavorite: false
+  };
 }
 

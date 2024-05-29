@@ -1,20 +1,24 @@
+import { makeFakePromoFilm } from '../mocks/mocks';
+
 export default function FilmCard() {
+  const promoFilm = makeFakePromoFilm();
+
   return (
     <div className="film-card__wrap">
       <div className="film-card__info">
         <div className="film-card__poster">
           <img
-            src="img/the-grand-budapest-hotel-poster.jpg"
-            alt="The Grand Budapest Hotel poster"
+            src={promoFilm.posterImage}
+            alt={`${promoFilm.name} poster`}
             width={218}
             height={327}
           />
         </div>
         <div className="film-card__desc">
-          <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+          <h2 className="film-card__title">{promoFilm.name}</h2>
           <p className="film-card__meta">
-            <span className="film-card__genre">Drama</span>
-            <span className="film-card__year">2014</span>
+            <span className="film-card__genre">{promoFilm.genre}</span>
+            <span className="film-card__year">{promoFilm.released}</span>
           </p>
           <div className="film-card__buttons">
             <button className="btn btn--play film-card__button" type="button">
