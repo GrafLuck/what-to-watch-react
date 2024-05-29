@@ -12,7 +12,7 @@ import {
 import { TFilmPageState } from '../types/film-page-state';
 
 export default function FilmPage() {
-  const [state, setState] = useState<TFilmPageState>('Details');
+  const [state, setState] = useState<TFilmPageState>('Overview');
   const film = makeFakeFilm();
 
   return (
@@ -74,13 +74,39 @@ export default function FilmPage() {
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">
+                  <li
+                    className={
+                      state === 'Overview'
+                        ? 'film-nav__item film-nav__item--active'
+                        : 'film-nav__item '
+                    }
+                  >
+                    <a
+                      href="#"
+                      className="film-nav__link"
+                      onClick={(evt) => {
+                        evt.preventDefault();
+                        setState('Overview');
+                      }}
+                    >
                       Overview
                     </a>
                   </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">
+                  <li
+                    className={
+                      state === 'Details'
+                        ? 'film-nav__item film-nav__item--active'
+                        : 'film-nav__item '
+                    }
+                  >
+                    <a
+                      href="#"
+                      className="film-nav__link"
+                      onClick={(evt) => {
+                        evt.preventDefault();
+                        setState('Details');
+                      }}
+                    >
                       Details
                     </a>
                   </li>
