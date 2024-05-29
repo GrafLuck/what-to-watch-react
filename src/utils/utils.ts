@@ -9,6 +9,10 @@ export function convertArrayToString(array: string[]) {
   return array.join(', ');
 }
 
+export function convertArrayToList(array: string[]) {
+  return array.join(', \n');
+}
+
 export function convertRatingToString(rating: number) {
   const integerRating = Math.floor(rating);
   switch(integerRating){
@@ -29,4 +33,10 @@ export function convertRatingToString(rating: number) {
     case 10:
       return 'Awesome';
   }
+}
+
+export function convertMinutesToHoursAndMinutes(minutes: number) {
+  const hours = Math.floor(minutes / 60);
+  const min = minutes - hours * 60;
+  return (hours === 0) ? `${min}m` : `${hours}h ${min}m`;
 }

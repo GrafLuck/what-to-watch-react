@@ -1,10 +1,18 @@
+import { useState } from 'react';
 import FilmCardList from '../components/film-card-list';
 import Footer from '../components/footer';
 import Header from '../components/header';
 import { makeFakeFilm } from '../mocks/mocks';
-import { convertArrayToString, convertRatingToString } from '../utils/utils';
+import {
+  convertArrayToList,
+  convertArrayToString,
+  convertMinutesToHoursAndMinutes,
+  convertRatingToString,
+} from '../utils/utils';
+import { TFilmPageState } from '../types/film-page-state';
 
 export default function FilmPage() {
+  const [state, setState] = useState<TFilmPageState>('Details');
   const film = makeFakeFilm();
 
   return (
@@ -83,28 +91,83 @@ export default function FilmPage() {
                   </li>
                 </ul>
               </nav>
-              <div className="film-rating">
-                <div className="film-rating__score">{film.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">
-                    {convertRatingToString(film.rating)}
-                  </span>
-                  <span className="film-rating__count">
-                    {film.scoresCount} ratings
-                  </span>
-                </p>
-              </div>
-              <div className="film-card__text">
-                {film.description}
-                <p className="film-card__director">
-                  <strong>Director: {film.director}</strong>
-                </p>
-                <p className="film-card__starring">
-                  <strong>
-                    Starring: {convertArrayToString(film.starring)} and other
-                  </strong>
-                </p>
-              </div>
+              {state === 'Overview' ? (
+                <>
+                  <div className="film-rating">
+                    <div className="film-rating__score">{film.rating}</div>
+                    <p className="film-rating__meta">
+                      <span className="film-rating__level">
+                        {convertRatingToString(film.rating)}
+                      </span>
+                      <span className="film-rating__count">
+                        {film.scoresCount} ratings
+                      </span>
+                    </p>
+                  </div>
+                  <div className="film-card__text">
+                    {film.description}
+                    <p className="film-card__director">
+                      <strong>Director: {film.director}</strong>
+                    </p>
+                    <p className="film-card__starring">
+                      <strong>
+                        Starring: {convertArrayToString(film.starring)} and
+                        other
+                      </strong>
+                    </p>
+                  </div>
+                </>
+              ) : (
+                ''
+              )}
+              {state === 'Details' ? (
+                <div className="film-card__text film-card__row">
+                  <div className="film-card__text-col">
+                    <p className="film-card__details-item">
+                      <strong className="film-card__details-name">
+                        Director
+                      </strong>
+                      <span className="film-card__details-value">
+                        {film.director}
+                      </span>
+                    </p>
+                    <p className="film-card__details-item">
+                      <strong className="film-card__details-name">
+                        Starring
+                      </strong>
+                      <span className="film-card__details-value">
+                        {convertArrayToList(film.starring)}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="film-card__text-col">
+                    <p className="film-card__details-item">
+                      <strong className="film-card__details-name">
+                        Run Time
+                      </strong>
+                      <span className="film-card__details-value">
+                        {convertMinutesToHoursAndMinutes(film.runTime)}
+                      </span>
+                    </p>
+                    <p className="film-card__details-item">
+                      <strong className="film-card__details-name">Genre</strong>
+                      <span className="film-card__details-value">
+                        {film.genre}
+                      </span>
+                    </p>
+                    <p className="film-card__details-item">
+                      <strong className="film-card__details-name">
+                        Released
+                      </strong>
+                      <span className="film-card__details-value">
+                        {film.released}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </div>
