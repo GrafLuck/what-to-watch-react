@@ -40,3 +40,7 @@ export function convertMinutesToHoursAndMinutes(minutes: number) {
   const min = minutes - hours * 60;
   return (hours === 0) ? `${min}m` : `${hours}h ${min}m`;
 }
+
+export function convertData(date: Date) {
+  return date;
+}

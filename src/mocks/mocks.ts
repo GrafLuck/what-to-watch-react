@@ -1,5 +1,6 @@
 import { TFilmCard } from '../types/film-card';
 import { TPromoFilmCard } from '../types/promo-film-card';
+import { TReview } from '../types/review';
 import { TSmallCardFilm } from '../types/small-card-film';
 
 export function makeFakePromoFilm() : TPromoFilmCard {
@@ -219,3 +220,21 @@ export function makeFakeFilm() : TFilmCard {
   };
 }
 
+export function makeFakeReviews() : TReview[] {
+  return [
+    {
+      id: '3d566c8c-dd21-45c0-a875-20e8f5366863',
+      comment: 'This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.',
+      date: '2024-05-09T21:00:00.440Z',
+      rating: 4,
+      user: 'Max'
+    },
+    {
+      id: '847232bd-0ed0-46af-9502-2a4cd6f02c0a',
+      comment: 'This movie will change the way movies are made. Slow-mo, stills, black and white, and color were all used to brilliant effect.',
+      date: '2024-05-06T21:00:00.440Z',
+      rating: 6,
+      user: 'Zak'
+    }
+  ];
+}

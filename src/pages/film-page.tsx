@@ -2,18 +2,17 @@ import { useState } from 'react';
 import FilmCardList from '../components/film-card-list';
 import Footer from '../components/footer';
 import Header from '../components/header';
-import { makeFakeFilm } from '../mocks/mocks';
-import {
-  convertArrayToList,
-  convertArrayToString,
-  convertMinutesToHoursAndMinutes,
-  convertRatingToString,
-} from '../utils/utils';
+import { makeFakeFilm, makeFakeReviews } from '../mocks/mocks';
 import { TFilmPageState } from '../types/film-page-state';
+import FilmOverview from '../components/film-overview';
+import FilmDetails from '../components/film-details';
+import FilmReviews from '../components/film-reviews';
+import FilmCardButtons from '../components/film-card-buttons';
 
 export default function FilmPage() {
   const [state, setState] = useState<TFilmPageState>('Overview');
   const film = makeFakeFilm();
+  const reviews = makeFakeReviews();
 
   return (
     <>
@@ -34,31 +33,8 @@ export default function FilmPage() {
                 <span className="film-card__genre">{film.genre}</span>
                 <span className="film-card__year">{film.released}</span>
               </p>
-              <div className="film-card__buttons">
-                <button
-                  className="btn btn--play film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 19" width={19} height={19}>
-                    <use xlinkHref="#play-s" />
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button
-                  className="btn btn--list film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
-                <a href="add-review.html" className="btn film-card__button">
-                  Add review
-                </a>
-              </div>
             </div>
+            <FilmCardButtons isAuthorization isMainPage={false} />
           </div>
         </div>
         <div className="film-card__wrap film-card__translate-top">
@@ -110,90 +86,29 @@ export default function FilmPage() {
                       Details
                     </a>
                   </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">
+                  <li
+                    className={
+                      state === 'Reviews'
+                        ? 'film-nav__item film-nav__item--active'
+                        : 'film-nav__item '
+                    }
+                  >
+                    <a
+                      href="#"
+                      className="film-nav__link"
+                      onClick={(evt) => {
+                        evt.preventDefault();
+                        setState('Reviews');
+                      }}
+                    >
                       Reviews
                     </a>
                   </li>
                 </ul>
               </nav>
-              {state === 'Overview' ? (
-                <>
-                  <div className="film-rating">
-                    <div className="film-rating__score">{film.rating}</div>
-                    <p className="film-rating__meta">
-                      <span className="film-rating__level">
-                        {convertRatingToString(film.rating)}
-                      </span>
-                      <span className="film-rating__count">
-                        {film.scoresCount} ratings
-                      </span>
-                    </p>
-                  </div>
-                  <div className="film-card__text">
-                    {film.description}
-                    <p className="film-card__director">
-                      <strong>Director: {film.director}</strong>
-                    </p>
-                    <p className="film-card__starring">
-                      <strong>
-                        Starring: {convertArrayToString(film.starring)} and
-                        other
-                      </strong>
-                    </p>
-                  </div>
-                </>
-              ) : (
-                ''
-              )}
-              {state === 'Details' ? (
-                <div className="film-card__text film-card__row">
-                  <div className="film-card__text-col">
-                    <p className="film-card__details-item">
-                      <strong className="film-card__details-name">
-                        Director
-                      </strong>
-                      <span className="film-card__details-value">
-                        {film.director}
-                      </span>
-                    </p>
-                    <p className="film-card__details-item">
-                      <strong className="film-card__details-name">
-                        Starring
-                      </strong>
-                      <span className="film-card__details-value">
-                        {convertArrayToList(film.starring)}
-                      </span>
-                    </p>
-                  </div>
-                  <div className="film-card__text-col">
-                    <p className="film-card__details-item">
-                      <strong className="film-card__details-name">
-                        Run Time
-                      </strong>
-                      <span className="film-card__details-value">
-                        {convertMinutesToHoursAndMinutes(film.runTime)}
-                      </span>
-                    </p>
-                    <p className="film-card__details-item">
-                      <strong className="film-card__details-name">Genre</strong>
-                      <span className="film-card__details-value">
-                        {film.genre}
-                      </span>
-                    </p>
-                    <p className="film-card__details-item">
-                      <strong className="film-card__details-name">
-                        Released
-                      </strong>
-                      <span className="film-card__details-value">
-                        {film.released}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                ''
-              )}
+              {state === 'Overview' ? <FilmOverview film={film} /> : ''}
+              {state === 'Details' ? <FilmDetails film={film} /> : ''}
+              {state === 'Reviews' ? <FilmReviews reviews={reviews} /> : ''}
             </div>
           </div>
         </div>
