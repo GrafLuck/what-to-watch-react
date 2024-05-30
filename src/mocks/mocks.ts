@@ -2,6 +2,7 @@ import { TFilmCard } from '../types/film-card';
 import { TPromoFilmCard } from '../types/promo-film-card';
 import { TReview } from '../types/review';
 import { TSmallCardFilm } from '../types/small-card-film';
+import { TUser } from '../types/user';
 
 export function makeFakePromoFilm() : TPromoFilmCard {
   return {
@@ -237,4 +238,13 @@ export function makeFakeReviews() : TReview[] {
       user: 'Zak'
     }
   ];
+}
+
+export function makeUser() : TUser {
+  return {
+    name: 'Oliver.conner',
+    avatarUrl: 'https://url-to-image/image.jpg',
+    email: 'Oliver.conner@gmail.com',
+    token: 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20='
+  };
 }

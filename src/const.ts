@@ -3,5 +3,6 @@ export const WAIT_VIDEO_TIMER_IN_MS = 1000;
 
 export enum AppRoute {
     'MAIN' = '/',
-    'FILMS' = '/films'
+    'FILMS' = '/films',
+    'SIGNIN' = '/login',
 }

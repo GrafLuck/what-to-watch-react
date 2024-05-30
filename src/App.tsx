@@ -3,6 +3,7 @@ import MainPage from './pages/main-page';
 import FilmPage from './pages/film-page';
 import { AppRoute } from './const';
 import AddReviewPage from './pages/add-review-page';
+import SignIn from './pages/sign-in-page';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: `${AppRoute.FILMS}/:id/review`,
     element: <AddReviewPage />,
+  },
+  {
+    path: `${AppRoute.SIGNIN}`,
+    element: <SignIn />,
   },
 ]);
 
