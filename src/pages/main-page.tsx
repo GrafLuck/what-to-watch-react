@@ -32,7 +32,7 @@ export default function MainPage() {
           <img src={promoFilm.backgroundImage} alt={promoFilm.name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <Header />
+        <Header isDisplayedBreadcrumbs={false} />
         <FilmCard />
       </section>
       <div className="page-content">
