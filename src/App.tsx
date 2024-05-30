@@ -1,7 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import MainPage from './pages/MainPage';
+import MainPage from './pages/main-page';
 import FilmPage from './pages/film-page';
 import { AppRoute } from './const';
+import AddReviewPage from './pages/add-review-page';
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: `${AppRoute.FILMS}/:id`,
     element: <FilmPage />,
+  },
+  {
+    path: `${AppRoute.FILMS}/:id/review`,
+    element: <AddReviewPage />,
   },
 ]);
 

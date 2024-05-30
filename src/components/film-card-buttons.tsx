@@ -1,11 +1,16 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../const';
+
 type TFilmCardButtonsProps = {
   isAuthorization?: boolean;
   isMainPage: boolean;
+  id: string;
 };
 
 export default function FilmCardButtons({
   isAuthorization,
   isMainPage,
+  id,
 }: TFilmCardButtonsProps) {
   function isAddReviewDisplayed() {
     if (isMainPage) {
@@ -33,9 +38,12 @@ export default function FilmCardButtons({
         <span className="film-card__count">9</span>
       </button>
       {isAddReviewDisplayed() ? (
-        <a href="add-review.html" className="btn film-card__button">
+        <Link
+          to={`${AppRoute.FILMS}/${id}/review`}
+          className="btn film-card__button"
+        >
           Add review
-        </a>
+        </Link>
       ) : (
         ''
       )}

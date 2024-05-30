@@ -25,7 +25,7 @@ export default function FilmPage() {
             <img src={film.backgroundImage} alt={film.name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
-          <Header />
+          <Header isDisplayedBreadcrumbs={false} />
           <div className="film-card__wrap">
             <div className="film-card__desc">
               <h2 className="film-card__title">{film.name}</h2>
@@ -34,7 +34,7 @@ export default function FilmPage() {
                 <span className="film-card__year">{film.released}</span>
               </p>
             </div>
-            <FilmCardButtons isAuthorization isMainPage={false} />
+            <FilmCardButtons isAuthorization isMainPage={false} id={film.id} />
           </div>
         </div>
         <div className="film-card__wrap film-card__translate-top">

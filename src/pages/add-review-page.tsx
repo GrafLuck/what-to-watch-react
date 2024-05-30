@@ -1,43 +1,25 @@
+import Header from '../components/header';
 import Rating from '../components/rating';
-import UserBlock from '../components/user-block';
+import { makeFakeFilm } from '../mocks/mocks';
 
 export default function AddReviewPage() {
+  const film = makeFakeFilm();
+
   return (
-    <section className="film-card film-card--full">
+    <section
+      className="film-card film-card--full"
+      style={{ backgroundColor: film.backgroundColor }}
+    >
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <header className="page-header">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">
-                  The Grand Budapest Hotel
-                </a>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
-          <UserBlock />
-        </header>
+        <Header isDisplayedBreadcrumbs />
         <div className="film-card__poster film-card__poster--small">
           <img
-            src="img/the-grand-budapest-hotel-poster.jpg"
-            alt="The Grand Budapest Hotel poster"
+            src={film.posterImage}
+            alt={`${film.name} poster`}
             width={218}
             height={327}
           />
