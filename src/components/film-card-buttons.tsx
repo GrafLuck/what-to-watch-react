@@ -30,6 +30,10 @@ export default function FilmCardButtons({
     navigate(`${AppRoute.PLAYER}/${film.id}`);
   };
 
+  const handleAddToListButtonClick = () => {
+    // добавить в список к просмотру
+  };
+
   return (
     <div className="film-card__buttons">
       <button
@@ -42,7 +46,11 @@ export default function FilmCardButtons({
         </svg>
         <span>Play</span>
       </button>
-      <button className="btn btn--list film-card__button" type="button">
+      <button
+        className="btn btn--list film-card__button"
+        type="button"
+        onClick={handleAddToListButtonClick}
+      >
         <svg viewBox="0 0 19 20" width={19} height={20}>
           <use xlinkHref="#add" />
         </svg>

@@ -14,6 +14,10 @@ export default function UserBlock({ isAuthorization }: TUserBlockProps) {
     navigate(AppRoute.MYLIST);
   };
 
+  const handleSignOutButtonClick = () => {
+    isAuthorization = false; //
+  };
+
   return (
     <ul className="user-block">
       {isAuthorization ? (
@@ -29,7 +33,13 @@ export default function UserBlock({ isAuthorization }: TUserBlockProps) {
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <Link
+              to={AppRoute.MAIN}
+              className="user-block__link"
+              onClick={handleSignOutButtonClick}
+            >
+              Sign out
+            </Link>
           </li>
         </>
       ) : (

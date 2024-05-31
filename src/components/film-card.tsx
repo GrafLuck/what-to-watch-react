@@ -21,7 +21,7 @@ export default function FilmCard() {
             <span className="film-card__genre">{promoFilm.genre}</span>
             <span className="film-card__year">{promoFilm.released}</span>
           </p>
-          <FilmCardButtons isMainPage />
+          <FilmCardButtons id={promoFilm.id} isMainPage />
         </div>
       </div>
     </div>
