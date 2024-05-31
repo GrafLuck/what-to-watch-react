@@ -54,7 +54,18 @@ export default function VideoPage() {
   };
 
   const handleExitPlayerButtonClick = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
     navigate(-1);
+  };
+
+  const handleFullscreenButtonClick = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
   };
 
   return (
@@ -109,7 +120,11 @@ export default function VideoPage() {
             )}
           </button>
           <div className="player__name">{film.name}</div>
-          <button type="button" className="player__full-screen">
+          <button
+            type="button"
+            className="player__full-screen"
+            onClick={handleFullscreenButtonClick}
+          >
             <svg viewBox="0 0 27 27" width={27} height={27}>
               <use xlinkHref="#full-screen" />
             </svg>
