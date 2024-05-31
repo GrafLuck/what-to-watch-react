@@ -10,6 +10,7 @@ import AddReviewPage from './pages/add-review-page';
 import SignIn from './pages/sign-in-page';
 import VideoPage from './pages/video-page';
 import MyListPage from './pages/my-list-page';
+import NotFoundPage from './pages/not-found-page/not-found-page';
 
 const authorization = false;
 
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
     loader: () => (authorization ? null : redirect(AppRoute.SIGNIN)),
   },
   {
-    path: `${AppRoute.SIGNIN}`,
+    path: AppRoute.SIGNIN,
     element: <SignIn />,
   },
   {
@@ -36,9 +37,13 @@ const router = createBrowserRouter([
     element: <VideoPage />,
   },
   {
-    path: `${AppRoute.MYLIST}`,
+    path: AppRoute.MYLIST,
     element: <MyListPage />,
     loader: () => (authorization ? null : redirect(AppRoute.SIGNIN)),
+  },
+  {
+    path: AppRoute.ERROR,
+    element: <NotFoundPage />,
   },
 ]);
 

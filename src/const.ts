@@ -7,4 +7,5 @@ export enum AppRoute {
     'SIGNIN' = '/login',
     'PLAYER' = '/player',
     'MYLIST' = '/mylist',
+    'ERROR' = '*',
 }
