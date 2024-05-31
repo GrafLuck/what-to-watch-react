@@ -11,7 +11,7 @@ export default function Header({ isDisplayedBreadcrumbs }: TBreadcrumbsProps) {
     <header className="page-header film-card__head">
       <Logo />
       {isDisplayedBreadcrumbs ? <Breadcrumbs /> : ''}
-      <UserBlock isAuthorization={false} />
+      <UserBlock isAuthorization />
     </header>
   );
 }

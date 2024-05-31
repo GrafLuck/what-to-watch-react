@@ -6,4 +6,5 @@ export enum AppRoute {
     'FILMS' = '/films',
     'SIGNIN' = '/login',
     'PLAYER' = '/player',
+    'MYLIST' = '/mylist',
 }

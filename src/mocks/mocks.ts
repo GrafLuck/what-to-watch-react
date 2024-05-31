@@ -243,7 +243,7 @@ export function makeFakeReviews() : TReview[] {
 export function makeUser() : TUser {
   return {
     name: 'Oliver.conner',
-    avatarUrl: 'https://url-to-image/image.jpg',
+    avatarUrl: 'img/avatar.jpg',
     email: 'Oliver.conner@gmail.com',
     token: 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20='
   };

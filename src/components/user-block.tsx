@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { makeUser } from '../mocks/mocks';
 import { AppRoute } from '../const';
 
@@ -7,14 +7,19 @@ type TUserBlockProps = {
 };
 
 export default function UserBlock({ isAuthorization }: TUserBlockProps) {
+  const navigate = useNavigate();
   const user = makeUser();
+
+  const handleUserAvatarClick = () => {
+    navigate(AppRoute.MYLIST);
+  };
 
   return (
     <ul className="user-block">
       {isAuthorization ? (
         <>
           <li className="user-block__item">
-            <div className="user-block__avatar">
+            <div className="user-block__avatar" onClick={handleUserAvatarClick}>
               <img
                 src={user.avatarUrl}
                 alt={`${user.name} avatar`}
