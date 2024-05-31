@@ -23,7 +23,7 @@ export default function VideoPage() {
           if (videoRef.current) {
             setTimeView(videoRef.current?.currentTime);
           }
-        }, 1000);
+        }, 100);
       }
     } catch (err) {
       setIsPlaying(false);
@@ -34,6 +34,13 @@ export default function VideoPage() {
     if (videoRef.current) {
       return getFilmTimeLeft(timeView, videoRef.current.duration);
     }
+  }
+
+  function getProgress() {
+    if (videoRef.current) {
+      return Math.ceil((timeView / videoRef.current.duration) * 100);
+    }
+    return 0;
   }
 
   const handlePlayButtonClick = () => {
@@ -68,7 +75,11 @@ export default function VideoPage() {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={30} max={100} />
+            <progress
+              className="player__progress"
+              value={getProgress()}
+              max={100}
+            />
             <div className="player__toggler" style={{ left: '30%' }}>
               Toggler
             </div>
