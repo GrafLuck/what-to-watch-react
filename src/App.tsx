@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from 'react-router-dom';
 import MainPage from './pages/main-page';
 import FilmPage from './pages/film-page';
 import { AppRoute } from './const';
@@ -6,6 +10,8 @@ import AddReviewPage from './pages/add-review-page';
 import SignIn from './pages/sign-in-page';
 import VideoPage from './pages/video-page';
 import MyListPage from './pages/my-list-page';
+
+const authorization = false;
 
 const router = createBrowserRouter([
   {
@@ -19,6 +25,7 @@ const router = createBrowserRouter([
   {
     path: `${AppRoute.FILMS}/:id/review`,
     element: <AddReviewPage />,
+    loader: () => (authorization ? null : redirect(AppRoute.SIGNIN)),
   },
   {
     path: `${AppRoute.SIGNIN}`,
@@ -31,6 +38,7 @@ const router = createBrowserRouter([
   {
     path: `${AppRoute.MYLIST}`,
     element: <MyListPage />,
+    loader: () => (authorization ? null : redirect(AppRoute.SIGNIN)),
   },
 ]);
 
