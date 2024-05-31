@@ -4,6 +4,7 @@ import FilmPage from './pages/film-page';
 import { AppRoute } from './const';
 import AddReviewPage from './pages/add-review-page';
 import SignIn from './pages/sign-in-page';
+import VideoPage from './pages/video-page';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: `${AppRoute.SIGNIN}`,
     element: <SignIn />,
+  },
+  {
+    path: `${AppRoute.PLAYER}/:id`,
+    element: <VideoPage />,
   },
 ]);
 

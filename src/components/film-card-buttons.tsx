@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute } from '../const';
+import { makeFakeFilm } from '../mocks/mocks';
 
 type TFilmCardButtonsProps = {
   isAuthorization?: boolean;
@@ -12,6 +13,9 @@ export default function FilmCardButtons({
   isMainPage,
   id,
 }: TFilmCardButtonsProps) {
+  const navigate = useNavigate();
+  const film = makeFakeFilm();
+
   function isAddReviewDisplayed() {
     if (isMainPage) {
       return false;
@@ -22,9 +26,17 @@ export default function FilmCardButtons({
     return true;
   }
 
+  const handlePlayerButtonClick = () => {
+    navigate(`${AppRoute.PLAYER}/${film.id}`);
+  };
+
   return (
     <div className="film-card__buttons">
-      <button className="btn btn--play film-card__button" type="button">
+      <button
+        className="btn btn--play film-card__button"
+        type="button"
+        onClick={handlePlayerButtonClick}
+      >
         <svg viewBox="0 0 19 19" width={19} height={19}>
           <use xlinkHref="#play-s" />
         </svg>
