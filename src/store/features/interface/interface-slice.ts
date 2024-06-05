@@ -22,6 +22,6 @@ export const interfaceSlice = createSlice({
   },
 });
 
-export const { incrementCountPage } = interfaceSlice.actions;
+export const { incrementCountPage, resetCountPage } = interfaceSlice.actions;
 
 export default interfaceSlice.reducer;
